@@ -25,7 +25,7 @@ router.post('/api/register', RegisterValidations, Validator, async (req, res) =>
         // check if Id Number exists
         let user = await User.findOne({ idnumber });
         if (user) {
-            return res.status(400).json({
+            return res.status(411).json({
                 success: false,
                 message: "This Id Number is already registerd",
             })
