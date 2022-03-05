@@ -7,7 +7,6 @@ import sendMain from '../functions/emailSender'
 import { userAuth } from '../middlewares/auth';
 import Validator from '../middlewares/validater-middleware'
 import { RegisterValidations, AuthenticateValidations, ResetPassword } from '../validators';
-
 const router = Router()
 
 /**
@@ -20,9 +19,8 @@ const router = Router()
 router.post('/api/register', RegisterValidations, Validator, async (req, res) => {
     try {
 
-        let { idnumber, email } = req.body;
+        let { idnumber, email, phonenumber, password } = req.body;
 
-        // check if Id Number exists
         let user = await User.findOne({ idnumber });
         if (user) {
             return res.status(411).json({
@@ -40,6 +38,10 @@ router.post('/api/register', RegisterValidations, Validator, async (req, res) =>
                     "Email is already registered."
             })
         }
+
+     
+
+
         user = new User({
             ...req.body,
             verificationCode: randomBytes(20).toString("hex"),
