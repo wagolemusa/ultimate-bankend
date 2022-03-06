@@ -198,9 +198,9 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
         <a href="${DOMAIN}users/reset-password-now/${user.resetPasswordToken}">Verify Now</a>
     `;
         sendMain(user.email, "Reset Password", "Please reset your password", html);
-        return res.status(404).json({
+        return res.status(201).json({
             success: true,
-            message: "Password Reset is sent to your account"
+            message: "Password Reset Link is sent to your account"
         });
          
     }catch(error){
