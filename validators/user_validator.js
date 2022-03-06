@@ -10,8 +10,8 @@ const email = check("email", "Please provide a valid email address").isEmail();
 const password =  check('password')
     .isLength({ min: 5 })
     .withMessage('Password must be at least 5 chars long')
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i")
-    .withMessage('Password must contain a number')
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
+    .withMessage('Password must 8 to 15 contain a number, uppercase, lowercase and special character')
 
 export const RegisterValidations = [firstname, lastname, middlename, idnumber, phonenumber, email, password];
 export const AuthenticateValidations = [email, password];
