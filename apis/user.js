@@ -136,7 +136,7 @@ router.post("/api/authenticate", AuthenticateValidations, Validator, async(req, 
         }
 
         let token = await user.generateJWT();
-        return res.status(200).json({
+        return res.status(201).json({
             success: true,
             user: user.getUserInfo(),
             token: `Bearer ${token}`,
