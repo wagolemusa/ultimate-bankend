@@ -9,9 +9,9 @@ const email = check("email", "Please provide a valid email address").isEmail();
 
 const password =  check('password')
     .isLength({ min: 5 })
-    .withMessage('must be at least 5 chars long')
+    .withMessage('Password must be at least 5 chars long')
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i")
-    .withMessage('must contain a number')
+    .withMessage('Password must contain a number')
 
 export const RegisterValidations = [firstname, lastname, middlename, idnumber, phonenumber, email, password];
 export const AuthenticateValidations = [email, password];
