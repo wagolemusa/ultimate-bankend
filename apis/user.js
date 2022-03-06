@@ -200,7 +200,7 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
         sendMain(user.email, "Reset Password", "Please reset your password", html);
         return res.status(201).json({
             success: true,
-            message: "Password Reset Link is sent to your account"
+            message: "Password Reset Link is sent to your email account"
         });
          
     }catch(error){
