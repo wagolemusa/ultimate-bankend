@@ -217,7 +217,7 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
  * @type GET
  */
 
- router.get('/reset-password-now/:resetPasswordToken', async(req, res) => {
+ router.get('/api/reset-password-now/:resetPasswordToken', async(req, res) => {
      try{
          let { resetPasswordToken }  = req.params;
          let user = await User.findOne({resetPasswordToken,
