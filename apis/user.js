@@ -257,7 +257,7 @@ router.post('/api/reset-password-now', async(req, res)=>{
             })
         }
         user.password = password;
-        user.resetPasswordToken = undefined;
+        user.resetPasswordToken = undefined;    
         user.resetPasswordExpiresIn = undefined;
 
         await user.save();
