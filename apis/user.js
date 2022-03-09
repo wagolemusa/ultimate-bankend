@@ -195,7 +195,7 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
         let html = `
         <h1>Hello, ${user.lastname}</h1>
         <p>Please click the following link to reset your passsword</p>
-        <a href="${DOMAIN}users/reset-password-now/${user.resetPasswordToken}">Verify Now</a>
+        <a href="${DOMAIN}users/api/reset-password-now/${user.resetPasswordToken}">Verify Now</a>
     `;
         sendMain(user.email, "Reset Password", "Please reset your password", html);
         return res.status(201).json({
