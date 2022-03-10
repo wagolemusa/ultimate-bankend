@@ -242,7 +242,7 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
  * @access Restricted by Email
  * @type POST
  */
-router.post('/api/reset-password-now', async(req, res)=>{
+router.post('/api/reset-password-now/:resetPasswordToken', async(req, res)=>{
     try{
 
         let { resetPasswordToken, password } = req.body;
