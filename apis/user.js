@@ -273,7 +273,7 @@ router.post('/api/reset-password-now', async(req, res)=>{
        });  
     
     }catch(err){
-        return res.status(400)({
+        return res.status(400).json({
             success: false,
             message: "Samething Went Wrong"
         })
