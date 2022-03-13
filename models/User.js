@@ -85,5 +85,5 @@ UserSchema.methods.getUserInfo = function () {
     return pick(this, ["_id", "firstname", "lastname", "middlename", "email", "idnumber", "verified"]);
 }
 
-const User = model("user", UserSchema);
+const User = model("users", UserSchema);
 export default User;

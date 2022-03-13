@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv  from "dotenv";
+import { join } from "path";
 import mongoose from "mongoose";
 import passport from "passport";
 import { json } from "body-parser";
@@ -12,6 +13,7 @@ var morgan = require('morgan')
 // import Routers
 
 import UserApis from './apis/user';
+import ProfileApis from './apis/profiles'
 
 
 // import passport middleware
@@ -26,10 +28,12 @@ dotenv.config()
 app.use(cors());
 app.use(json());
 app.use(passport.initialize());
+app.use(express.static(join(__dirname, "./uploads")));
 app.use(morgan('combined'))
 
 // inject sub routes and  apis
 app.use("/users", UserApis);
+app.use("/profiles",  ProfileApis);
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 
@@ -55,23 +59,8 @@ const main = async () => {
     
     app.listen(port, () => console.log(`Server started on port ${port}`));
     }catch(error){
-        console.log(`Unbale to start the servr \n${error.message}`)
+        console.log(`Unbale to start the server \n${error.message}`)
     }
 }
 
 main();
-
-// app.get("*",(req, res) =>{
-//     res.sendFile(path.join(__dirname,"./ultimate/build/index.html"))
-//   })
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(publicPath, 'index.html'));
-//  });
-
-// app.get("*", function(req, res) {
-//     res.sendFile(path.join(__dirname+'/ultimate/build/index.html'));
-// });
-
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'ultimate/build', 'index.html'));
-//   });
