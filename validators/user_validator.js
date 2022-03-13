@@ -14,7 +14,9 @@ const password =  check('password')
     .withMessage('Password must 8 to 15 contain a number, uppercase, lowercase and special character')
 
 export const RegisterValidations = [firstname, lastname, middlename, idnumber, phonenumber, email, password];
+export const NextofkingValidation = [ firstname, lastname, idnumber, phonenumber, email]
 export const AuthenticateValidations = [email, password];
+
 export const ResetPassword = [email]
 
 

@@ -14,6 +14,7 @@ var morgan = require('morgan')
 
 import UserApis from './apis/user';
 import ProfileApis from './apis/profiles'
+import NextofkingApis from './apis/nextofking'
 
 
 // import passport middleware
@@ -34,6 +35,7 @@ app.use(morgan('combined'))
 // inject sub routes and  apis
 app.use("/users", UserApis);
 app.use("/profiles",  ProfileApis);
+app.use("/nextofking", NextofkingApis);
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 
