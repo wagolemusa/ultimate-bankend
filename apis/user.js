@@ -7,6 +7,7 @@ import sendMain from '../functions/emailSender'
 import { userAuth } from '../middlewares/auth';
 import Validator from '../middlewares/validater-middleware'
 import {  validationResult } from 'express-validator';
+
 import { RegisterValidations, AuthenticateValidations, ResetPassword } from '../validators';
 const router = Router()
 
@@ -279,6 +280,14 @@ router.post('/api/reset-password-now', async(req, res)=>{
         })
     }
 });
+
+
+router.post('/api/signout', userAuth,(req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({
+        message: 'Signout succesfully...!'
+    })
+})  
 
 export default router;
 
