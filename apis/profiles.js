@@ -27,6 +27,7 @@ const router = Router();
             message: "Your Profile was created successfully"
         });
     }catch(err){
+        console.log(err)
         return res.status(400).json({
             success: false,
             message: "Unable to create your profile"

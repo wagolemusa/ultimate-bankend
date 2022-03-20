@@ -23,7 +23,7 @@ const NextofkingSchema = new Schema({
             type: String,
             required: false,
         },
-        innumber: {
+        idnumber: {
             type: String,
             required: false,
         }
