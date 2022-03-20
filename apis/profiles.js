@@ -3,6 +3,8 @@ import { Profile, User } from "../models";
 import { DOMAIN } from "../constants";
 import {userAuth} from '../middlewares/auth'
 import uploader from "../middlewares/uploader";
+const {upload} = require("../multer")
+const cloudinary = require("../utils/cloundinary")
 
 const router = Router();
 
@@ -12,7 +14,7 @@ const router = Router();
  * @access Private 
  * @type POST <multe-form > request 
  */
- router.post("/api/create-profile", userAuth, uploader.single("avatar"), async(req, res) => {
+ router.post("/api/create-profile", userAuth, async(req, res) => {
     try{
         let { body, file, user } = req;
         let path = DOMAIN + file.path.split("uploads/")[1];
@@ -137,4 +139,19 @@ router.put("/api/update-profile", userAuth, uploader.single("avatar"), async(req
 
       }
   })
+
+  router.post("/upload", upload.single("photo"), async (req, res) =>{
+    const {path} = req.file
+    try{
+    // Upload image to cloudinary
+    const result = await cloudinary.uploader.upload(path);
+    await fs.unlinkSync(path)
+     res.status(200).send(result.url)
+    }catch(err){
+        console.log(err);
+     
+    }
+});
+
+
 export default router;
