@@ -5,6 +5,7 @@ import {userAuth} from '../middlewares/auth'
 import uploader from "../middlewares/uploader";
 const {upload} = require("../multer")
 const cloudinary = require("../utils/cloundinary")
+const fs = require("fs")
 
 const router = Router();
 
@@ -16,8 +17,8 @@ const router = Router();
  */
  router.post("/api/create-profile", userAuth, async(req, res) => {
     try{
-        let { body, file, user } = req;
-        let path = DOMAIN + file.path.split("uploads/")[1];
+        let { body, path, user } = req;
+
         let profile = new Profile({
             social: body,
             account: user._id,
@@ -140,7 +141,7 @@ router.put("/api/update-profile", userAuth, uploader.single("avatar"), async(req
       }
   })
 
-  router.post("/upload", upload.single("photo"), async (req, res) =>{
+  router.post("/upload", upload.single("avatar"), async (req, res) =>{
     const {path} = req.file
     try{
     // Upload image to cloudinary
