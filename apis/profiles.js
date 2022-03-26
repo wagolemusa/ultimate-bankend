@@ -17,12 +17,12 @@ const router = Router();
  */
  router.post("/api/create-profile", userAuth, async(req, res) => {
     try{
-        let { body, path, user } = req;
+        let { body, user } = req;
 
         let profile = new Profile({
             social: body,
             account: user._id,
-            avatar: path,
+            avatar: body,
         });
         await profile.save()
         return res.status(201).json({
@@ -79,15 +79,14 @@ router.get("/api/my-profile", userAuth, async(req, res) => {
  * @type PUT
  */
 
-router.put("/api/update-profile", userAuth, uploader.single("avatar"), async(req, res) => {
+router.put("/api/update-profile", userAuth, async(req, res) => {
     try{
-        let { body, file, user } = req; 
-        let path  = DOMAIN + file.path.split("uploads/")[1];
-        let profile = await Profile.findOneAndUpdate(
-            { account: user._id },
-            { social: body, avatar: path },
-            { new: true }
-        );
+        let profile = await Profile.findOneAndUpdate({
+            facebook: req.body.facebook,
+            twitter: req.body.twitter,
+            linkedin: req.body.linkedin,
+            instagram: req.body.instagram,
+        });
         return res.status(200).json({
             success: true,
             message: "Your profile is now updated",

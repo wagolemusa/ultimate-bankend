@@ -6,10 +6,6 @@ const ProfileSchema = new Schema({
          ref: "users",
          type: Schema.Types.ObjectId,
      },
-    avatar:{
-        type: String,
-        required: false,
-    },
     social: {
         facebook:{
             type: String,
@@ -26,7 +22,11 @@ const ProfileSchema = new Schema({
         instagram: {
             type: String,
             required: false,
-        }
+        },
+        avatar:{
+            type: String,
+            required: false,
+        },
     }
 }, { timestamps: true });
 
