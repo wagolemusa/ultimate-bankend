@@ -89,10 +89,7 @@ router.get('/verify-now/:verificationCode', async (req, res) => {
         let { verificationCode } = req.params;
         let user = await User.findOne({verificationCode});
         if(!user){
-            return res.status(401).json({
-                success: false,
-                message: "Unauthorized access. Invalid verification Code"
-            })
+            return res.sendFile(join(__dirname, "../templates/invalid-code.html"));
         }
         user.verified = true;
         user.verificationCode = undefined;
@@ -224,10 +221,7 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
          let user = await User.findOne({resetPasswordToken,
             resetPasswordExpiresIn: { $gt:Date.now() }, });
          if(!user){
-             return res.status(401).json({
-                 success: false,
-                 message: "Please reset token is expired."
-             });
+            return res.sendFile(join(__dirname, "../templates/invalid-code.html"));
          }
          return res.sendFile(join(__dirname, "../templates/password-reset.html"));
 
@@ -252,10 +246,7 @@ router.post('/api/reset-password-now', async(req, res)=>{
             resetPasswordExpiresIn
         });
         if(!user){
-            return res.status(401).json({
-                success: false,
-                message: "Password reset token  is invalid or has expired"
-            })
+            return res.sendFile(join(__dirname, "../templates/invalid-code.html"));
         }
         user.password = password;
         user.resetPasswordToken = undefined;    
