@@ -30,17 +30,13 @@ const router = Router();
             account: user._id
         });
         await nextofking.save()
-        return res.status(200).json({
+        return res.status(201).json({
             success: true,
             message: "Next of king was created Successfully"
         })
 
-    }catch(err){
-        console.log(err)
-        return res.status(400).json({
-            success: false,
-            message: "Next of king was not Created"
-        })
+    }catch(error){
+        console.log(error)
     }
  })
 
