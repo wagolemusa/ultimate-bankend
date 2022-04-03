@@ -30,6 +30,7 @@ const router = Router();
             account: user._id
         });
         await nextofking.save()
+
         return res.status(201).json({
             success: true,
             message: "Next of king was created Successfully"
