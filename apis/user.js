@@ -8,7 +8,7 @@ import { userAuth } from '../middlewares/auth';
 import Validator from '../middlewares/validater-middleware'
 import {  validationResult } from 'express-validator';
 
-import { RegisterValidations, AuthenticateValidations, ResetPassword } from '../validators';
+import { RegisterValidations, AuthenticateValidations, ResetPassword, EditUser } from '../validators';
 const router = Router()
 
 /**
@@ -156,12 +156,22 @@ router.post("/api/authenticate", AuthenticateValidations, Validator, async(req, 
  * @type POST
  */
 
- router.get("/api/authenticate", userAuth,
- async(req, res)=>{
-    console.log("REQ", req);
-    return res.status(200).json({
-       user: req.user
-    });
+ router.get("/api/authenticate", userAuth, async(req, res)=>{
+     
+    try{
+
+        let user = await User.findOne().populate(
+            "account", 
+            "firstname lastname middlename phonenumber idnumber email"
+        )
+    
+        return res.status(200).json({
+            success: true,
+            user,
+        });
+    }catch(err){
+        console.log(err)
+    }
 })
 
 /**
@@ -271,6 +281,56 @@ router.post('/api/reset-password-now', async(req, res)=>{
         })
     }
 });
+
+
+  /**
+ * @description Update authentinicated user's profile
+ * @api /users/api/update
+ * @access Private 
+ * @type PUT
+ */
+
+   router.put("/api/update", userAuth,  EditUser, async(req, res) => {
+    try{
+        let { email } = req.body;
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({
+                success: false,
+                message: errors.array()
+
+            })
+        }
+
+        let user = await User.findOne({ email });
+        if (user) {
+            return res.status(411).json({
+                success: false,
+                message: "This email is already registerd",
+            })
+        }
+
+        user = await User.findOneAndUpdate({
+            phonenumber: req.body.phonenumber,
+            email: req.body.email,
+
+        });
+        return res.status(201).json({
+            success: true,
+            message: "Your profile is now updated",
+            user,
+        })
+        
+    }catch(error){
+        console.log(error)
+        // return res.status(400).json({
+        //     success: false,
+        //     message: "Unable to update profile"
+        // })
+
+    }
+})
+
 
 
 router.post('/api/signout', userAuth,(req, res) => {

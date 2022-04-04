@@ -16,6 +16,7 @@ const password =  check('password')
 export const RegisterValidations = [firstname, lastname, middlename, idnumber, phonenumber, email, password];
 export const NextofkingValidation = [ firstname, lastname, idnumber, phonenumber, email]
 export const AuthenticateValidations = [email, password];
+export const EditUser = [email, phonenumber]
 
 export const ResetPassword = [email]
 

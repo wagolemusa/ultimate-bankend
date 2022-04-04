@@ -2,6 +2,7 @@ import { Router } from "express"
 import { Nextofking, User } from "../models";
 import {userAuth} from '../middlewares/auth'
 import {  validationResult } from 'express-validator';
+import Validator from '../middlewares/validater-middleware'
 import { NextofkingValidation } from '../validators';
 const router = Router();
 
@@ -12,7 +13,7 @@ const router = Router();
  * @type POST
  */
 
- router.post("/api/next/king", userAuth, NextofkingValidation, async(req, res) => {
+ router.post("/api/next/king", userAuth, NextofkingValidation, Validator, async(req, res) => {
     try{
         let { body, user } = req;
 
