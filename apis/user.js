@@ -290,7 +290,7 @@ router.post('/api/reset-password-now', async(req, res)=>{
  * @type PUT
  */
 
-   router.put("/api/update", userAuth,  EditUser, async(req, res) => {
+   router.put("/api/update", userAuth,  EditUser, Validator, async(req, res) => {
     try{
         let { email } = req.body;
         const errors = validationResult(req);

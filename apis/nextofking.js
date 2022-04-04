@@ -78,9 +78,18 @@ const router = Router();
  * @type PUT
  */
 
- router.put("/api/update-next-of-king", userAuth, async(req, res) => {
+ router.put("/api/update-next-of-king", userAuth, NextofkingValidation, Validator, async(req, res) => {
     try{
         let { body, user } = req;
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({
+                success: false,
+                message: errors.array()
+
+            })
+        }
 
         let nextking = await Nextofking.findOneAndUpdate(
             { account: user._id },
@@ -92,12 +101,9 @@ const router = Router();
             message: "Your next of king is updated successfully",
             nextking
         })
-    }catch(err){
-        console.log(err)
-        return res.status(400).json({
-            success: false,
-            message: "Samething Went Wrong in update next of king"
-        })
+    }catch(error){
+        console.log(error)
+        
     }
  })
 
