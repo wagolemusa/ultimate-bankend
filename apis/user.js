@@ -251,10 +251,9 @@ router.post('/api/reset-password-now', async(req, res)=>{
     try{
 
         let { resetPasswordToken, password } = req.body;
-        let user = await User.findOne({
-            resetPasswordToken,
-            resetPasswordExpiresIn
-        });
+  
+        let user = await User.findOne({resetPasswordToken,
+            resetPasswordExpiresIn: { $gt:Date.now() }, });
         if(!user){
             return res.sendFile(join(__dirname, "../templates/invalid-code.html"));
         }
@@ -265,9 +264,9 @@ router.post('/api/reset-password-now', async(req, res)=>{
         await user.save();
        // Send the password reset in Email 
        let html = `
-       <h1>Hello, ${user.lastname}</h1>
-       <p>Your Password is reseted Successfully</p>
-   `;
+            <h1>Hello, ${user.lastname}</h1>
+            <p>Your Password is reseted Successfully</p>
+        `;
        sendMain(user.email, "Reset Password Successfull", "Your password has been changed", html);
        return res.status(200).json({
            success: true,
@@ -275,6 +274,7 @@ router.post('/api/reset-password-now', async(req, res)=>{
        });  
     
     }catch(err){
+        console.log(err)
         return res.status(400).json({
             success: false,
             message: "Samething Went Wrong"
