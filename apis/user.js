@@ -247,20 +247,11 @@ router.put("/api/reset-password", ResetPassword, Validator, async(req, res)=>{
  * @access Restricted by Email
  * @type POST
  */
-router.post('/api/reset-password-now', PasswordUpdate, Validator, async(req, res)=>{
+router.post('/api/reset-password-now', async(req, res)=>{
     try{
 
         let { resetPasswordToken, password } = req.body;
-        
-        const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            return res.status(400).json({
-                success: false,
-                message: errors.array()
-
-            })
-        }
-  
+   
         let user = await User.findOne({resetPasswordToken,
             resetPasswordExpiresIn: { $gt:Date.now() }, });
         if(!user){
@@ -277,7 +268,7 @@ router.post('/api/reset-password-now', PasswordUpdate, Validator, async(req, res
             <p>Your Password is reseted Successfully</p>
         `;
        sendMain(user.email, "Reset Password Successfull", "Your password has been changed", html);
-       return res.status(200).json({
+       return res.status(201).json({
            success: true,
            message: "Your password request is reseted successfully Now you can login your account"
        });  
