@@ -19,5 +19,6 @@ export const AuthenticateValidations = [email, password];
 export const EditUser = [email, phonenumber]
 
 export const ResetPassword = [email]
+export const PasswordUpdate = [password]
 
 
