@@ -9,7 +9,8 @@ import Validator from '../middlewares/validater-middleware'
 import {  validationResult } from 'express-validator';
 
 import { RegisterValidations, AuthenticateValidations, ResetPassword, EditUser ,PasswordUpdate} from '../validators';
-const router = Router()
+
+const router = Router() 
 
 /**
  * @description User create new account
@@ -17,7 +18,6 @@ const router = Router()
  * @api /users/api/register
  * @type POST
  */
-
 router.post('/api/register', RegisterValidations, Validator, async (req, res) => {
     try {
 
@@ -169,6 +169,7 @@ router.post("/api/authenticate", AuthenticateValidations, Validator, async(req, 
             success: true,
             user,
         });
+        
     }catch(err){
         console.log(err)
     }
@@ -289,7 +290,6 @@ router.post('/api/reset-password-now', async(req, res)=>{
  * @access Private 
  * @type PUT
  */
-
    router.put("/api/update", userAuth,  EditUser, Validator, async(req, res) => {
     try{
         let { email } = req.body;
