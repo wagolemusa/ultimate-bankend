@@ -13,8 +13,15 @@ var morgan = require('morgan')
 // import Routers
 
 import UserApis from './apis/user';
+import cityApis from './apis/city'
 import ProfileApis from './apis/profiles'
+import CountryApi from  './apis/country'
 import NextofkingApis from './apis/nextofking'
+import Companycategory from './apis/companyCategory'
+import BusinessApis from './apis/business'
+import CompanyApis from './apis/company'
+import PeopleApis from './apis/people'
+import BusinesscategoriesApis from './apis/businescategory'
 
 
 // import passport middleware
@@ -41,7 +48,14 @@ app.use(morgan('combined'))
 // inject sub routes and  apis
 app.use("/users", UserApis);
 app.use("/profiles",  ProfileApis);
+app.use("/country", CountryApi);
+app.use("/city",  cityApis);
+app.use("/api", Companycategory);
+app.use("/api", BusinessApis)
+app.use("/api", CompanyApis);
+app.use("/api", PeopleApis);
 app.use("/nextofking", NextofkingApis);
+app.use("/businesscategory", BusinesscategoriesApis)
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 
