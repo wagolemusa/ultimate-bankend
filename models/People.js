@@ -1,23 +1,30 @@
-import  { Schema, model } from  'mongoose';
+import { Schema, model } from 'mongoose';
 
-const PeopleSchema = new Schema({ 
+const PeopleSchema = new Schema({
 
     account: {
         ref: "users",
         type: Schema.Types.ObjectId,
     },
-    people:{
-        name: {
-            type: String,
-            required: false,
-        },
-        phonenumber: {
-            type: String,
-            required: false,
-        }
+
+    name: {
+        type: String,
+        required: false,
+    },
+    phonenumber: {
+        type: String,
+        required: false,
+    },
+    status: {
+        type: String,
+        require: false
+    },
+    district: {
+        type: String,
+        require: false
     }
 
-}, {timestamps: true});
+}, { timestamps: true });
 
 const People = model("people", PeopleSchema)
 export default People;

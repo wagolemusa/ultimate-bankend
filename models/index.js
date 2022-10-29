@@ -10,7 +10,8 @@ export {default as Country } from './Country'
 
 export { default as Profile } from './Profile'
 
-export { default as  Campany } from './Company'
+export { default as  Company } from './Company'
+export { default as Business } from './Business'
 
 export { default as Location } from './Location'
 

@@ -5,7 +5,10 @@ const CitySchema = new Schema({
     city_name: {
         type: String,
         required: false,
-    }
+    },
+    country: [
+        {type: Schema.Types.ObjectId,ref: "countries"}
+    ]
 
 
 }, {timestamps: true});
