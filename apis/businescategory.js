@@ -23,7 +23,7 @@ router.post("/api/", async(req, res) => {
 })
 
 
-router.get("/api", async(req, res) => {
+router.get("/api/business", async(req, res) => {
     try{
         const data = await Businesscategories.find()
 

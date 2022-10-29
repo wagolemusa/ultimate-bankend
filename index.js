@@ -55,7 +55,7 @@ app.use("/api", BusinessApis)
 app.use("/api", CompanyApis);
 app.use("/api", PeopleApis);
 app.use("/nextofking", NextofkingApis);
-app.use("/businesscategory", BusinesscategoriesApis)
+app.use("/api", BusinesscategoriesApis)
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 

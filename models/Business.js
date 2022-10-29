@@ -27,7 +27,7 @@ const BusinessSchema = new Schema({
     },
     status: {
         type: String,
-        require: false
+        required: false
     },
     website: {
         type: String,
@@ -40,15 +40,15 @@ const BusinessSchema = new Schema({
     },
     district: {
         type: String,
-        require: false
+        required: false
     },
     town: {
         type: String,
-        require: false
+        required: false
     },
     category: {
-        ref: "businesscategories",
-        type: Schema.Types.ObjectId,
+        type: String,
+        required: false
     }
 }, { timestamps: true });
 
