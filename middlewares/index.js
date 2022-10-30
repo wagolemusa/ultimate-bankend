@@ -17,18 +17,7 @@ export const requiresSignin = (req, res, next) => {
   };
 
 
-//   export const adminAuth = (req, res, next) => {
-//     if (req.headers.authorization) {
-//       const token = req.headers.authorization.split(" ")[1];
-//       const admin = jwt.verify(token, SECRECT);
-//       req.user = admin;
-//     } else {
-//       return res.status(400).json({ message: "Authorization required" });
-//     }
-//     next();
-//     //jwt.decode()
-//   };
-  
+
   
   exports.userMiddleware = (req, res, next) => {
     if (req.user.role !== "user") {
