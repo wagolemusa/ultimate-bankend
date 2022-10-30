@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { userAuth } from "../middlewares/auth";
+import { requiresSignin , adminAuth} from "../middlewares";
 import {  People } from "../models"
 
 
 const router = Router()
 
-router.post("/people", userAuth, async(req, res) => {
+router.post("/people", requiresSignin, async(req, res) => {
 
     try{
         const { phonenumber } = req.body;
@@ -35,7 +36,7 @@ router.post("/people", userAuth, async(req, res) => {
 })
 
 
-router.get("/people", async(req, res) => {
+router.get("/people",adminAuth,  async(req, res) => {
    try{
     const data = await People.find()
     return res.status(200).json({

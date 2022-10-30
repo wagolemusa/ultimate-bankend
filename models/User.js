@@ -15,10 +15,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    middlename: {
-        type: String,
-        required: true,
-    },
     phonenumber: {
         type: Number,
         required: true,
@@ -30,6 +26,11 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
     password: {
         type: String,
@@ -70,7 +71,8 @@ UserSchema.methods.generateJWT = async function () {
     let payload = {
         lastname: this.username,
         email: this.email,
-        id: this._id,
+        role: this.role,
+        id: this._id
     };
     return await sign(payload, SECRECT, {expiresIn: '1 day'});
 }
@@ -82,7 +84,7 @@ UserSchema.methods.generatePasswordReset = function () {
 };
 
 UserSchema.methods.getUserInfo = function () {
-    return pick(this, ["_id", "firstname", "lastname", "middlename", "email", "idnumber", "verified"]);
+    return pick(this, ["_id", "firstname", "lastname",  "email", "role", "idnumber", "verified"]);
 }
 
 const User = model("users", UserSchema);
