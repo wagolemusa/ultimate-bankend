@@ -156,15 +156,12 @@ router.post("/api/authenticate", AuthenticateValidations, Validator, async(req, 
  * @type POST
  */
 
- router.get("/api/authenticate", userAuth, async(req, res)=>{
+ router.get("/api/authenticate", async(req, res)=>{
      
     try{
 
-        let user = await User.findOne().populate(
-            "account", 
-            "firstname lastname middlename phonenumber idnumber email"
-        )
-    
+        let user = await User.find()
+
         return res.status(200).json({
             success: true,
             user,

@@ -69,19 +69,17 @@ router.post("/business", userAuth,  async(req, res) =>{
     }
 })
 
-router.get("/business", async(req, res) => {
-    try{
-
-        let { phone } = req.body;
-        const data = await Business.findOne({ phone })
-
+router.get("/business", async (req, res) => {
+    try {
+        const data = await Business.find()
         return res.status(200).json({
             success: true,
             data
         })
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 })
+
 
 export default router;

@@ -68,8 +68,6 @@ router.post("/company", userAuth, async (req, res) => {
 router.get("/company", async (req, res) => {
     try {
         const data = await Company.find()
-
-        console.log(data)
         return res.status(200).json({
             success: true,
             data
