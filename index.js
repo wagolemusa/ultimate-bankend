@@ -21,6 +21,7 @@ import Companycategory from './apis/companyCategory'
 import BusinessApis from './apis/business'
 import CompanyApis from './apis/company'
 import PeopleApis from './apis/people'
+import MessageApi from './apis/message'
 import BusinesscategoriesApis from './apis/businescategory'
 
 
@@ -56,6 +57,7 @@ app.use("/api", CompanyApis);
 app.use("/api", PeopleApis);
 app.use("/nextofking", NextofkingApis);
 app.use("/api", BusinesscategoriesApis)
+app.use("/api", MessageApi);
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 
