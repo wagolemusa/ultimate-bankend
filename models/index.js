@@ -16,7 +16,7 @@ export { default as Business } from './Business'
 export { default as Location } from './Location'
 
 export { default as Nextofking } from './Nextofking'
-
+export { default as Messages } from './Messages'
 export { default as Companycategory } from './CompanyCategory'
 
 export { default as Businesscategories } from './BusinessCategotry'

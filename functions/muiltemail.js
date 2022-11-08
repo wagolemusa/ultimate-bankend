@@ -3,16 +3,16 @@ import { SENDGRID_API, HOST_EMAIL } from '../constants'
 
 sgMail.setApiKey(SENDGRID_API);
 
-const  sendMain = async (email, subject, text, html) =>{
+const  mulitemail = async (email, subject, text, html) =>{
     try{
         const msg = {
             to: email,
-            from : HOST_EMAIL,
+            from:HOST_EMAIL,
             subject,
             text,
             html,
         };
-        await sgMail.send(msg);
+        await sgMail.sendMultiple(msg);
         console.log("MAIL_SENT");
     } catch(error){
         console.log(error);
@@ -21,4 +21,4 @@ const  sendMain = async (email, subject, text, html) =>{
     }
 }
 
-export default sendMain;
+export default mulitemail;

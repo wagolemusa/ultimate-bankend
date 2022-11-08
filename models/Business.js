@@ -38,6 +38,10 @@ const BusinessSchema = new Schema({
         type: String,
         required: false,
     },
+    country: {
+        type: String,
+        required: false
+    },
     district: {
         type: String,
         required: false
