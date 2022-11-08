@@ -19,6 +19,10 @@ const PeopleSchema = new Schema({
         type: String,
         require: false
     },
+    country: {
+        type: String,
+        required: false
+    },
     district: {
         type: String,
         require: false
