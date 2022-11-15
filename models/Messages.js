@@ -4,6 +4,10 @@ const MessagesSchema = new Schema({
     to:[{
         type: String
     }],
+    from: {
+        type: String,
+        require: false
+    },
     subject: {
         type: String,
         require: false,

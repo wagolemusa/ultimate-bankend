@@ -1,16 +1,27 @@
 import { Router } from "express";
 import { Business } from "../models";
 import {userAuth} from '../middlewares/auth'
+import { phoneValidation } from "../validators";
+import {  validationResult } from 'express-validator';
 
 
 const router = Router()
 
-router.post("/business", userAuth,  async(req, res) =>{
+router.post("/business", phoneValidation, userAuth,  async(req, res) =>{
     try{
        
         let { body, user} = req;
 
-        let { phone, phone1, email, email1 } = req.body;
+        let { phone, phone1 } = req.body;
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({
+                success: false,
+                message: errors.array()
+
+            })
+        }
         
         // checking if phone one exits
         let createbusiness1 = await Business.findOne({ phone})
@@ -29,25 +40,6 @@ router.post("/business", userAuth,  async(req, res) =>{
             return res.status(411).json({
                 success: false,
                 message: "Phone number two is already exits"
-            })
-        }
-
-        // Checking email if exits
-        let createbusiness3 = await Business.findOne({ email });
-        console.log(createbusiness3)
-        if(createbusiness3){
-            return res.status(411).json({
-                success: false,
-                message: "Email is already exits"
-            })
-        }
-
-        // checking email two if exits
-      let  createbusiness4 = await Business.findOne({ email1 });
-        if (createbusiness4){
-            return res.status(411).json({
-                success: false,
-                message: "Email two already exits"
             })
         }
 
