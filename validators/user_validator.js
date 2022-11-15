@@ -18,7 +18,7 @@ export const RegisterValidations = [firstname, lastname,  idnumber, phonenumber,
 export const NextofkingValidation = [ firstname, lastname, idnumber, phonenumber, email]
 export const AuthenticateValidations = [email, password];
 export const EditUser = [email, phonenumber]
-
+export const PeopleVidate = [phonenumber]
 export const ResetPassword = [email]
 export const PasswordUpdate = [password]
 export const phoneValidation = [ phone, phone1 ]
