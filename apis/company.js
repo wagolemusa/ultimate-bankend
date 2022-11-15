@@ -1,16 +1,27 @@
 import { Router } from "express";
 import { Company } from "../models";
 import { userAuth } from '../middlewares/auth'
+import {  validationResult } from 'express-validator';
+import { phoneValidation } from "../validators";
 
 
 const router = Router()
 
-router.post("/company", userAuth, async (req, res) => {
+router.post("/company",phoneValidation, userAuth, async (req, res) => {
     try {
 
         let { body, user} = req;
 
         let { phone, phone1, email, email1 } = req.body;
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({
+                success: false,
+                message: errors.array()
+
+            })
+        }
 
         // checking if phone one exits
         let createcompany = await Company.findOne({ phone });
@@ -32,7 +43,7 @@ router.post("/company", userAuth, async (req, res) => {
 
         // Checking email if exits
         createcompany = await Company.findOne({ email });
-        if (createcompany) {
+        if (createcompany & !"") {
             return res.status(411).json({
                 success: false,
                 message: "Email is already exits"
@@ -41,7 +52,7 @@ router.post("/company", userAuth, async (req, res) => {
 
         // checking email two if exits
         createcompany = await Company.findOne({ email1 });
-        if (createcompany) {
+        if (createcompany & !"") {
             return res.status(411).json({
                 success: false,
                 message: "Email two already exits"

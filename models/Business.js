@@ -17,27 +17,12 @@ const BusinessSchema = new Schema({
         type: String,
         required: false,
     },
-    email: {
-        type: String,
-        required: false,
-    },
-    email1: {
-        type: String,
-        required: false,
-    },
+  
     status: {
         type: String,
         required: false
     },
-    website: {
-        type: String,
-        required: false,
-    },
 
-    sociallink: {
-        type: String,
-        required: false,
-    },
     country: {
         type: String,
         required: false

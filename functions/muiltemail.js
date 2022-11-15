@@ -3,11 +3,11 @@ import { SENDGRID_API, HOST_EMAIL } from '../constants'
 
 sgMail.setApiKey(SENDGRID_API);
 
-const  mulitemail = async (email, subject, text, html) =>{
+const  mulitemail = async (email, from, subject, text, html) =>{
     try{
         const msg = {
             to: email,
-            from:HOST_EMAIL,
+            from,
             subject,
             text,
             html,
