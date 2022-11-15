@@ -26,6 +26,10 @@ const PeopleSchema = new Schema({
     district: {
         type: String,
         require: false
+    },
+    town:{
+        type: String,
+        require: false
     }
 
 }, { timestamps: true });
