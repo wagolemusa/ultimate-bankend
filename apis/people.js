@@ -3,12 +3,13 @@ import { userAuth } from "../middlewares/auth";
 import { requiresSignin , adminAuth} from "../middlewares";
 import {PeopleVidate  } from "../validators";
 import {  validationResult } from 'express-validator';
+import Validator from '../middlewares/validater-middleware'
 import {  People } from "../models"
 
 
 const router = Router()
 
-router.post("/people",PeopleVidate, userAuth,  async(req, res) => {
+router.post("/people",PeopleVidate, userAuth,  Validator, async(req, res) => {
 
     try{
         const { phonenumber } = req.body;
@@ -41,9 +42,10 @@ router.post("/people",PeopleVidate, userAuth,  async(req, res) => {
             success: true,
             message: "Created people Successfuly"
         })
-    }catch(err){
-        console.log(err)
-    }  
+    } catch (error) {
+        console.log(error)
+        
+    }
 })
 
 

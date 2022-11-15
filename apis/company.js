@@ -3,11 +3,12 @@ import { Company } from "../models";
 import { userAuth } from '../middlewares/auth'
 import {  validationResult } from 'express-validator';
 import { phoneValidation } from "../validators";
+import Validator from '../middlewares/validater-middleware'
 
 
 const router = Router()
 
-router.post("/company",phoneValidation, userAuth, async (req, res) => {
+router.post("/company",phoneValidation, userAuth, Validator, async (req, res) => {
     try {
 
         let { body, user} = req;
@@ -71,8 +72,8 @@ router.post("/company",phoneValidation, userAuth, async (req, res) => {
             message: "Company was created successfuly"
         })
 
-    } catch (err) {
-        console.log(err)
+    } catch (error) {
+        console.log(error)
     }
 })
 
