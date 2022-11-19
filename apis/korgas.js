@@ -27,7 +27,7 @@ router.post("/korgas",PeopleVidate,  Validator, async(req, res) => {
         await createpeople.save()
         return res.status(200).json({
             success: true,
-            message: "Thanks for Answering Questions"
+            message: "Thanks. We will call you"
         })
     } catch (error) {
         console.log(error)
