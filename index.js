@@ -24,6 +24,8 @@ import PeopleApis from './apis/people'
 import MessageApi from './apis/message'
 import PhoneSMSApi from './apis/phoneSms'
 import BusinesscategoriesApis from './apis/businescategory'
+import KorgasApi from './apis/korgas'
+import { api } from "./utils/cloundinary";
 
 
 // import passport middleware
@@ -59,7 +61,8 @@ app.use("/api", PeopleApis);
 app.use("/nextofking", NextofkingApis);
 app.use("/api", BusinesscategoriesApis)
 app.use("/api", MessageApi);
-app.use("/api", PhoneSMSApi)
+app.use("/api", PhoneSMSApi);
+app.use("/api", KorgasApi)
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 

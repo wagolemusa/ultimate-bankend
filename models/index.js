@@ -20,4 +20,5 @@ export { default as Messages } from './Messages'
 export { default as Companycategory } from './CompanyCategory'
 
 export { default as Businesscategories } from './BusinessCategotry'
+export { default as Korgas } from './Korgas'
 
