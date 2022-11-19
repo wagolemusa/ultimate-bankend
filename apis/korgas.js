@@ -11,6 +11,8 @@ const router = Router()
 router.post("/korgas",PeopleVidate,  Validator, async(req, res) => {
 
     try{
+        const { phonenumber } = req.body;
+
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).json({
@@ -19,8 +21,16 @@ router.post("/korgas",PeopleVidate,  Validator, async(req, res) => {
 
             })
         }
+
+        let createpeople = await Korgas.findOne({ phonenumber })
+        if(createpeople){
+            return res.status(411).json({
+                success: false,
+                message: "You have already submitted your Answers"
+            })
+        } 
         
-        let createpeople = new Korgas({
+        createpeople = new Korgas({
             ... req.body
         })
 
