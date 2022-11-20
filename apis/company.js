@@ -80,8 +80,10 @@ router.post("/company",phoneValidation, userAuth, Validator, async (req, res) =>
 router.get("/company", async (req, res) => {
     try {
         const data = await Company.find()
+        const countCompany = await Company.count()
         return res.status(200).json({
             success: true,
+            countCompany,
             data
         })
     } catch (err) {

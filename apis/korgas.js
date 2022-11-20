@@ -49,8 +49,10 @@ router.post("/korgas",PeopleVidate,  Validator, async(req, res) => {
 router.get("/korgas",adminAuth,  async(req, res) => {
    try{
     const data = await Korgas.find()
+    const countKorgas = await Korgas.count();
     return res.status(200).json({
         success: true,
+        countKorgas,
         data
     })
    }catch(err){

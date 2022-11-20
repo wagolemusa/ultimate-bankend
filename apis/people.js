@@ -52,8 +52,10 @@ router.post("/people",PeopleVidate, userAuth,  Validator, async(req, res) => {
 router.get("/people",adminAuth,  async(req, res) => {
    try{
     const data = await People.find()
+    const countPeople = await People.count()
     return res.status(200).json({
         success: true,
+        countPeople,
         data
     })
    }catch(err){

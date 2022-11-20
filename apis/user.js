@@ -159,12 +159,13 @@ router.post("/api/authenticate", AuthenticateValidations, Validator, async(req, 
  router.get("/api/authenticate", async(req, res)=>{
      
     try{
-
         let user = await User.find()
+        let countUser = await User.count();
 
         return res.status(200).json({
             success: true,
-            user,
+            countUser,
+            user
         });
         
     }catch(err){
