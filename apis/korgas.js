@@ -35,7 +35,7 @@ router.post("/korgas",PeopleVidate,  Validator, async(req, res) => {
         })
 
         await createpeople.save()
-        return res.status(200).json({
+        return res.status(201).json({
             success: true,
             message: "Thanks. We will call you"
         })
