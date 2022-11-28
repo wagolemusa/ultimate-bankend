@@ -21,4 +21,6 @@ export { default as Companycategory } from './CompanyCategory'
 
 export { default as Businesscategories } from './BusinessCategotry'
 export { default as Korgas } from './Korgas'
+export { default as PhonelList } from './Phone_List';
+export { default as EmailList } from './Email_List';
 

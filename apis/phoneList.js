@@ -4,12 +4,12 @@ import { requiresSignin , adminAuth} from "../middlewares";
 import {PeopleVidate  } from "../validators";
 import {  validationResult } from 'express-validator';
 import Validator from '../middlewares/validater-middleware'
-import {  People } from "../models"
+import {  PhonelList } from "../models"
 
 
 const router = Router()
 
-router.post("/people",PeopleVidate, requiresSignin,  Validator, async(req, res) => {
+router.post("/phone/list",PeopleVidate, userAuth,  Validator, async(req, res) => {
 
     try{
         const { phonenumber } = req.body;
@@ -24,7 +24,7 @@ router.post("/people",PeopleVidate, requiresSignin,  Validator, async(req, res) 
 
             })
         }
-        let createpeople = await People.findOne({ phonenumber })
+        let createPhoneList = await PhonelList.findOne({ phonenumber })
         if(createpeople){
             return res.status(411).json({
                 success: false,
@@ -32,15 +32,15 @@ router.post("/people",PeopleVidate, requiresSignin,  Validator, async(req, res) 
             })
         } 
 
-         createpeople = new People({
-            account: user.id,
+        createPhoneList = new PhonelList({
+            account: user._id,
             ... req.body
         })
 
-        await createpeople.save()
+        await createPhoneList.save()
         return res.status(200).json({
             success: true,
-            message: "Created people Successfuly"
+            message: "Number Added to the list"
         })
     } catch (error) {
         console.log(error)
@@ -49,13 +49,13 @@ router.post("/people",PeopleVidate, requiresSignin,  Validator, async(req, res) 
 })
 
 
-router.get("/people",adminAuth,  async(req, res) => {
+router.get("/phone/list", async(req, res) => {
    try{
-    const data = await People.find()
-    const countPeople = await People.count()
+    const data = await PhonelList.find()
+    const countPhonelist = await PhonelList.count()
     return res.status(200).json({
         success: true,
-        countPeople,
+        countPhonelist,
         data
     })
    }catch(err){
