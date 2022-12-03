@@ -25,8 +25,9 @@ import MessageApi from './apis/message'
 import PhoneSMSApi from './apis/phoneSms'
 import BusinesscategoriesApis from './apis/businescategory'
 import KorgasApi from './apis/korgas'
-import PhoneListApi from './apis/phoneList';
-import EmailListApi from './apis/emailList'
+import PhoneListApi from './apis/user/phoneList';
+import EmailListApi from './apis/user/emailList';
+import SearchBusinessApi from './apis/user/searchBusiness';
 
 import { api } from "./utils/cloundinary";
 
@@ -65,9 +66,10 @@ app.use("/nextofking", NextofkingApis);
 app.use("/api", BusinesscategoriesApis)
 app.use("/api", MessageApi);
 app.use("/api", PhoneSMSApi);
-app.use("/api", KorgasApi)
-app.use("/api", PhoneListApi)
-app.use("/api", EmailListApi)
+app.use("/api", KorgasApi);
+app.use("/api", PhoneListApi);
+app.use("/api", EmailListApi);
+app.use("/api", SearchBusinessApi);
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 

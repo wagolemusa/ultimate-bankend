@@ -38,6 +38,29 @@ const jwt = require("jsonwebtoken");
     }
   }
 
+  // Collector
+  export const collector = (req, res, next) => {
+    if (req.headers.authorization) {
+        const token = req.headers.authorization.split(" ")[1];
+      jwt.verify(token, SECRECT, (err, decodedToken) => {
+        if (err) {
+          return res.status(401).json({ message: "Not authorized" })
+        } else {
+          if (decodedToken.role !== "collector") {
+            return res.status(401).json({ message: "Not authorized" })
+          } else {
+            req.collector = decodedToken;
+            next()
+          }
+        }
+      })
+    } else {
+      return res
+        .status(401)
+        .json({ message: "Not authorized, token not available" })
+    }
+  }
+
   // Admin Auth
   export const adminAuth = (req, res, next) => {
     if (req.headers.authorization) {
