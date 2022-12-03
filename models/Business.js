@@ -38,6 +38,10 @@ const BusinessSchema = new Schema({
     category: {
         type: String,
         required: false
+    },
+    oncall: {
+        type: String,
+        required: false
     }
 }, { timestamps: true });
 

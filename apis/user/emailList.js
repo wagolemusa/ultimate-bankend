@@ -1,29 +1,30 @@
 import { Router } from "express";
-import { requiresSignin , adminAuth} from "../middlewares";
+import { requiresSignin , adminAuth} from "../../middlewares";
 import {  validationResult } from 'express-validator';
-import Validator from '../middlewares/validater-middleware'
-import {  EmailList } from "../models"
+import Validator from '../../middlewares/validater-middleware'
+import {  EmailList } from "../../models"
 
 
 const router = Router()
 
-router.post("/email/list", validationResult, Validator, async(req, res) => {
+router.post("/email/list", validationResult, requiresSignin, Validator, async(req, res) => {
     try {
         let { email } = req.body;
         let { user } = req;
         let  emailList  = await EmailList.findOne({ email })
 
-        if(emailList){
-            return res.status(401).json({
-                success: false,
-                message: `This email ${email} exits in your Email Listing`
-            })
-        }
+        // if(emailList){
+        //     return res.status(401).json({
+        //         success: false,
+        //         message: `This email ${email} exits in your Email Listing`
+        //     })
+        // }
 
         emailList = new EmailList ({
-            account: user._id,
+            account: user.id,
             ...req.body
         })
+        console.log(emailList)
         await emailList.save()
         return res.status(201).json({
             success: false,

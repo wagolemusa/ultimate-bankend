@@ -1,21 +1,18 @@
 import { Router } from "express";
-import { userAuth } from "../middlewares/auth";
-import { requiresSignin , adminAuth} from "../middlewares";
-import {PeopleVidate  } from "../validators";
+import { userAuth } from "../../middlewares/auth";
+import { requiresSignin , adminAuth} from "../../middlewares";
+import {PeopleVidate  } from "../../validators";
 import {  validationResult } from 'express-validator';
-import Validator from '../middlewares/validater-middleware'
-import {  PhonelList } from "../models"
+import Validator from '../../middlewares/validater-middleware'
+import {  PhonelList } from "../../models"
 
 
 const router = Router()
 
-router.post("/phone/list",PeopleVidate, userAuth,  Validator, async(req, res) => {
-
+router.post("/phone/list",PeopleVidate, requiresSignin,  Validator, async(req, res) => {
     try{
         const { phonenumber } = req.body;
         let { user } = req;
-
-
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).json({
@@ -49,7 +46,7 @@ router.post("/phone/list",PeopleVidate, userAuth,  Validator, async(req, res) =>
 })
 
 
-router.get("/phone/list", async(req, res) => {
+router.get("/phone/list", requiresSignin, async(req, res) => {
    try{
     const data = await PhonelList.find()
     const countPhonelist = await PhonelList.count()
