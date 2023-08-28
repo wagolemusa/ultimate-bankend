@@ -13,6 +13,10 @@ const Phone_ListSchema = new Schema({
     status: {
         type: String,
         require: false
+    },
+    account: {
+        ref: "users",
+        type: Schema.Types.ObjectId,
     }
 }, { timestamps: true });
 

@@ -38,7 +38,7 @@ router.post("/email/list", validationResult, requiresSignin, Validator, async(re
 })
 
 
-router.get("/email/list", async(req, res) => {
+router.get("/email/list", requiresSignin, async(req, res) => {
     try{
         const data = EmailList.find();
         return res.status(200).json({
