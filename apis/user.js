@@ -63,7 +63,7 @@ router.post('/api/register', RegisterValidations, Validator, async (req, res) =>
         <p>Please click the following link to verify your account</p>
         <a href="${DOMAIN}users/verify-now/${user.verificationCode}">Verify Now</a>
     `;
-        sendMain(user.email, "Verify Account", "Please verify Your Account", html);
+         sendMain(user.email, "Verify Account", "Please verify Your Account", html);
         return res.status(201).json({
             success: true,
             message: "Your account is create please verify your email address."
