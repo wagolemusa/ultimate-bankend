@@ -1,13 +1,14 @@
 import express from "express";
 import dotenv  from "dotenv";
 import { join } from "path";
+
 import mongoose from "mongoose";
 import passport from "passport";
 import { json } from "body-parser";
 import cors from 'cors'
 import { DB, PORT } from "./constants/index";
-const path = require("path")
-var morgan = require('morgan')
+// const path = require("path")
+// var morgan = require('morgan')
 
 
 // import Routers
@@ -31,9 +32,10 @@ import SearchBusinessApi from './apis/user/searchBusiness';
 
 import { api } from "./utils/cloundinary";
 
-
+require("esm")(module/*, options*/)
 // import passport middleware
 require("./middlewares/passport-middleware")
+// import passportmiddleware from "./middlewares/passportmiddleware"
 
 // Initialalize express application
 const app = express();
