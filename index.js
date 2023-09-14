@@ -1,14 +1,17 @@
 import express from "express";
 import dotenv  from "dotenv";
-import { join } from "path";
+// import { join } from "path";
 
 import mongoose from "mongoose";
-import passport from "passport";
+// import passport from "passport";
 import { json } from "body-parser";
 import cors from 'cors'
 import { DB, PORT } from "./constants/index";
-const path = require("path")
+import morgan from 'morgan';
+
+// const path = require("path")
 // var morgan = require('morgan')
+
 
 
 // import Routers
@@ -30,14 +33,14 @@ import PhoneListApi from './apis/user/phoneList';
 import EmailListApi from './apis/user/emailList';
 import SearchBusinessApi from './apis/user/searchBusiness';
 
-import { api } from "./utils/cloundinary";
-
-require("esm")(module/*, options*/)
+// import { api } from "./utils/cloundinary";
+// require("esm")(module/*, options*/)
 // import passport middleware
 // require("./middlewares/passport-middleware")
 // import passportmiddleware from "./middlewares/passportmiddleware"
-
+// import passport  from './middlewares/passport-middleware';
 // Initialalize express application
+
 const app = express();
 dotenv.config()
 
@@ -53,7 +56,7 @@ app.use(express.static(path.join(__dirname, "uploads")))
 app.use(express.json({limit: "50mb" }));
 app.use(express.urlencoded({ limit: '50mb', extended: true}))
 
-// app.use(morgan('combined'))
+app.use(morgan('combined'))
 
 // inject sub routes and  apis
 app.use("/users", UserApis);

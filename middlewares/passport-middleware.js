@@ -8,7 +8,7 @@ const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-  passport.use(
+  const passport = passport.use(
     new Strategy(opts, async ({ id }, done) => {
       try {
         let user = await User.findById(id);
@@ -22,3 +22,4 @@ const opts = {
       }
     })
   );
+export default passport
