@@ -34,9 +34,9 @@ import { api } from "./utils/cloundinary";
 
 require("esm")(module/*, options*/)
 // import passport middleware
-// require("./middlewares/passport-middleware")
+require("./middlewares/passport-middleware")
 // import passportmiddleware from "./middlewares/passportmiddleware"
-
+// import passport  from './middlewares/passportmiddleware'
 // Initialalize express application
 const app = express();
 dotenv.config()
