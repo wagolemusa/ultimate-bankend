@@ -29,6 +29,7 @@ import KorgasApi from './apis/korgas'
 import PhoneListApi from './apis/user/phoneList';
 import EmailListApi from './apis/user/emailList';
 import SearchBusinessApi from './apis/user/searchBusiness';
+import BtApi from './apis/btdata'
 
 import { api } from "./utils/cloundinary";
 
@@ -72,6 +73,7 @@ app.use("/api", KorgasApi);
 app.use("/api", PhoneListApi);
 app.use("/api", EmailListApi);
 app.use("/api", SearchBusinessApi);
+app.use("/api", BtApi);
 // app.use(express.static(path.join(__dirname,"./ultimate/build","index.html")))
 // app.use(express.static(path.join(__dirname, 'build')));
 
