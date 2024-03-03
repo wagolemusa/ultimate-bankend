@@ -9,7 +9,7 @@ import {  People } from "../models"
 
 const router = Router()
 
-router.post("/people",PeopleVidate, requiresSignin,  Validator, async(req, res) => {
+router.post("/people", PeopleVidate, requiresSignin,  Validator, async(req, res) => {
 
     try{
         const { phonenumber } = req.body;
