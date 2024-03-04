@@ -37,7 +37,7 @@ router.post("/btdata", async(req, res) => {
         await bt.save()
         let html = `
             <h1>Hello ${bt.firstname, bt.lastname}</h1>
-            <h3>This Your ID Number ${generateUniqueId()}        
+            <h3>This Your ID Number ${userid}}        
         `
 
        sendMain(bt.email, "Stay With BT", html)
@@ -57,7 +57,7 @@ router.post("/btdata", async(req, res) => {
 
 router.get("/getBtUser",  async(req, res) => {
     try{
-     const data = await Btdata.find()
+     const data = await Btdata.find().sort({_id:-1})
      return res.status(200).json({
          success: true,
          data
