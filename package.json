@@ -32,6 +32,8 @@
     "node-fetch": "^2.6.7",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
+    "uuid": "^9.0.1",
+    "uuid-validate": "^0.0.3",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
